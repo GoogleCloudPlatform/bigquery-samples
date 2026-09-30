@@ -25,17 +25,3 @@ To run this notebook, you will need:
     *   `aiplatform.googleapis.com`
     *   `storage.googleapis.com`
 *   Proper IAM permissions (`roles/aiplatform.user` and `roles/storage.objectViewer`) granted to the BigQuery Cloud Resource Connection service account (handled programmatically in the notebook).
-
-## Getting Started
-
-1.  Open the [Jupyter Notebook](notebook.ipynb) using Colab, Colab Enterprise, or your preferred Jupyter environment.
-2.  Update the `PROJECT_ID` variable in the first setup cell.
-3.  Run the cells sequentially. 
-
-## Related Resources
-*   [Full Interactive Codelab: Multimodal analytics and zero-shot forecasting with Google Cloud](https://codelabs.developers.google.com/...) *(Update with your published DevSite link)*
-*   [BigQuery Generative AI Documentation](https://cloud.google.com/bigquery/docs/generative-ai-overview)
-*   [BigQuery Object Tables Documentation](https://cloud.google.com/bigquery/docs/object-table-introduction)
-
-## License
-Apache 2.0 - See [LICENSE](../../LICENSE) for more information.
