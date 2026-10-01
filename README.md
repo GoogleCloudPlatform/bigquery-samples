@@ -60,6 +60,12 @@ bigquery-samples/
 
 [**End-to-End Solutions**](./end-to-end/) showcase comprehensive architectures that unify multiple Google Cloud and BigQuery capabilities into complete business workflows—such as **GraphRAG** (combining [BigQuery Graph](https://docs.cloud.google.com/bigquery/docs/graph-overview?utm_campaign=CDR_0x6cb6c9c7_default_b549221282&utm_medium=external&utm_source=other) with [BigQuery AI Functions](https://docs.cloud.google.com/bigquery/docs/generative-ai-overview?utm_campaign=CDR_0x6cb6c9c7_default_b549221282&utm_medium=external&utm_source=other)), multimodal lakehouse pipelines with BigLake and Object Tables, and real-time AI agent integrations.
 
+### Featured End-to-End Samples
+
+| Sample | Overview |
+| :--- | :--- |
+| **[Real-Time Fraud Defense with BigQuery Graph, Spanner Graph & Reverse ETL](./end-to-end/spanner-fraud-detection/)** | Unifies analytical and operational graph intelligence to catch a coordinated fraud ring in an online game. Uses **BigQuery Continuous Queries (Reverse ETL)** to stream real-time anomaly alerts to **Spanner**, **Spanner Graph** and vector search to trace multi-hop financial transactions and bot accounts, and **BigQuery Graph (ISO GQL)** with multimodal embeddings to analyze communication networks. <br/><br/> 📄 [Sample README](./end-to-end/spanner-fraud-detection/README.md) · 🗄️ [BigQuery Tables DDL](./end-to-end/spanner-fraud-detection/bq_create_tables.sql) · ⚡ [Spanner Tables DDL](./end-to-end/spanner-fraud-detection/spanner_create_tables.sql) · 🤖 [Multimodal Model DDL](./end-to-end/spanner-fraud-detection/bq_create_model.sql) · 👤 [SAMPLEOWNERS](./end-to-end/spanner-fraud-detection/SAMPLEOWNERS) |
+
 👉 Explore the **[`end-to-end/` directory](./end-to-end/)** for details and upcoming reference architectures.
 
 ---

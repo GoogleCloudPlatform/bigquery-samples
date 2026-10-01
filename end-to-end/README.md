@@ -18,4 +18,6 @@ Samples in this folder go beyond single-feature snippets to showcase complete ar
 
 ## 📂 Samples
 
-*New end-to-end samples are coming soon! Looking for category-specific samples right now? Explore our **[Graph (`graph/`)](../graph/)** and **[AI Functions (`ai-functions/`)](../ai-functions/)** directories, or check out our [Contributing Guidelines](../docs/contributing.md) to submit a solution.*
+| Sample | Overview |
+| :--- | :--- |
+| **[Real-Time Fraud Defense with BigQuery Graph, Spanner Graph & Reverse ETL](./spanner-fraud-detection/)** | Combines **BigQuery Continuous Queries (Reverse ETL)**, **Spanner Graph**, **Spanner Vector Search**, and **BigQuery Graph (ISO GQL)** with multimodal embeddings to detect, trace, and investigate a coordinated fraud ring across operational and analytical data. <br/><br/> 📄 [Sample README](./spanner-fraud-detection/README.md) · 👤 [SAMPLEOWNERS](./spanner-fraud-detection/SAMPLEOWNERS) |
