@@ -13,5 +13,5 @@
 -- limitations under the License.
 
 CREATE OR REPLACE MODEL `game_analytics.multimodal_model`
-  REMOTE WITH CONNECTION `DEFAULT.unicorn-connection`
+  REMOTE WITH CONNECTION `REGION.unicorn-connection`
   OPTIONS (ENDPOINT = 'multimodalembedding@001');
