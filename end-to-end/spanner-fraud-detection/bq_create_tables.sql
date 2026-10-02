@@ -26,14 +26,6 @@ CREATE TABLE IF NOT EXISTS GameplayTelemetry (
 )
 PARTITION BY DATE(EventTimestamp);
 
-CREATE TABLE IF NOT EXISTS AccountSignals (
-    SignalId STRING NOT NULL,
-    PlayerId STRING NOT NULL,
-    AlertType STRING NOT NULL,
-    EventTime TIMESTAMP NOT NULL
-)
-PARTITION BY DATE(EventTime);
-
 CREATE TABLE IF NOT EXISTS Players (
     PlayerId STRING NOT NULL,
     Name STRING NOT NULL,
