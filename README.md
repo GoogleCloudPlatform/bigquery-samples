@@ -99,6 +99,28 @@ For BigQuery client library snippets by programming language, refer to the follo
 
 ---
 
+## 📦 Additional BigQuery Repositories
+
+Explore these related Google Cloud repositories for specialized BigQuery utilities, tools, and solution accelerators:
+
+### Core Utilities, ML & DataFrames
+- **[GoogleCloudPlatform/bigquery-utils](https://github.com/GoogleCloudPlatform/bigquery-utils)**: Helper scripts, SQL views, UDFs, and migration utilities for managing and optimizing BigQuery workloads.
+- **[GoogleCloudPlatform/bigquery-ml-utils](https://github.com/GoogleCloudPlatform/bigquery-ml-utils)**: Utilities, custom functions, and reference notebooks for building and deploying machine learning models with BigQuery ML (BQML).
+- **[googleapis/python-bigquery-dataframes](https://github.com/googleapis/python-bigquery-dataframes)**: Python library (**BigFrames**) providing pandas-compatible DataFrame and scikit-learn-like ML APIs powered by the BigQuery engine.
+
+### Governance, Security & Data Quality
+- **[GoogleCloudPlatform/terraform-google-secured-data-warehouse](https://github.com/GoogleCloudPlatform/terraform-google-secured-data-warehouse)**: Terraform blueprint for deploying an enterprise-grade, security-hardened BigQuery data warehouse with VPC Service Controls, CMEK, and fine-grained IAM.
+- **[GoogleCloudPlatform/bq-pii-classifier](https://github.com/GoogleCloudPlatform/bq-pii-classifier)**: Automated solution for scanning, classifying, and tagging columns containing Personally Identifiable Information (PII) across BigQuery datasets using policy tags.
+- **[GoogleCloudPlatform/cloud-data-quality](https://github.com/GoogleCloudPlatform/cloud-data-quality)**: Declarative data quality validation engine (CloudDQ) for defining and executing data quality rules on BigQuery tables.
+
+### Ingestion, Optimization & Visualization
+- **[GoogleCloudPlatform/bigquery-antipattern-recognition](https://github.com/GoogleCloudPlatform/bigquery-antipattern-recognition)**: Static analysis tool and CLI that scans BigQuery SQL queries to detect performance anti-patterns and recommend optimizations.
+- **[GoogleCloudPlatform/bq-utilization-alerts](https://github.com/GoogleCloudPlatform/bq-utilization-alerts)**: Monitoring and alerting solution for tracking BigQuery slot utilization, on-demand query costs, and reservation efficiency.
+- **[GoogleCloudPlatform/fluentbit-bigquery-writeapi-sink](https://github.com/GoogleCloudPlatform/fluentbit-bigquery-writeapi-sink)**: High-throughput log ingestion sink for streaming telemetry and logs from Fluent Bit to BigQuery via the Storage Write API.
+- **[GoogleCloudPlatform/bigquery-geo-viz](https://github.com/GoogleCloudPlatform/bigquery-geo-viz)**: Interactive web tool for visualizing geospatial data and GIS query results stored in BigQuery using Google Maps APIs.
+
+---
+
 ## 🤝 Governance & Contributing
 
 ### Code of Conduct
