@@ -18,7 +18,7 @@ FROM music.Songs WHERE title = 'Neon Summer'
 UNION ALL
 SELECT 'AFTER - joined to playlists', s.title, s.streams, pl.playlist_name
 FROM music.Songs s
-JOIN music.PlaylistEntries e ON e.song_id = s.song_id
-JOIN music.Playlists pl ON pl.playlist_id = e.playlist_id
+LEFT JOIN music.PlaylistEntries e ON e.song_id = s.song_id
+LEFT JOIN music.Playlists pl ON pl.playlist_id = e.playlist_id
 WHERE s.title = 'Neon Summer'
 ORDER BY step DESC, playlist

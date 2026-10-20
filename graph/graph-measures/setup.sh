@@ -36,18 +36,15 @@ if [ -z "$PROJECT" ] || [ "$PROJECT" = "(unset)" ]; then
 fi
 tick "project: $PROJECT"
 
-DATASET="${DATASET:-music}"
+DATASET="music"
 
 gcloud services enable bigquery.googleapis.com --project "$PROJECT" >/dev/null 2>&1 \
   && tick "BigQuery API enabled" \
   || die "Could not enable bigquery.googleapis.com on $PROJECT." "Check that billing is linked and that you can edit the project."
 
 say "Creating dataset $DATASET (US) and five tables…"
-SQL="$(cat sql/setup/00_dataset.sql)"
-if [ "$DATASET" != "music" ]; then
-  SQL="$(printf '%s' "$SQL" | perl -pe "s/(?<![\w.])music\./$DATASET./g; s/EXISTS music\b/EXISTS $DATASET/")"
-fi
-printf '%s' "$SQL" | bq --headless=true --project_id="$PROJECT" --location=US query --nouse_legacy_sql --quiet >/dev/null \
+bq --headless=true --project_id="$PROJECT" --location=US query --nouse_legacy_sql --quiet >/dev/null \
+    < sql/setup/00_dataset.sql \
   || die "The setup SQL failed." "Re-run with the output visible:" "  bq query --nouse_legacy_sql < sql/setup/00_dataset.sql"
 
 expected="Labels:2 Artists:3 Songs:5 Playlists:4 PlaylistEntries:10"

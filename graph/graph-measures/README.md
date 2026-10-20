@@ -18,7 +18,7 @@ cd ~/bigquery-samples/graph/graph-measures
 ```
 
 `setup_project.sh` is for readers who do not have a project yet. It picks a billing account
-(preferring the newest `[YYYY-MM-DD] GDP Credit:` one), creates `bq-graph-XXXX` on it, records the
+(preferring the newest `[YYYY-MM-DD] GDP Credit:` one), creates `bq-graph-xxxxxx` on it, records the
 ID in `~/project_id.txt`, selects it with `gcloud config set project`, and then waits until the
 brand new project is actually allowed to serve — a project created seconds ago answers
 `403 IAM_PERMISSION_DENIED` while its IAM policy propagates. It is safe to re-run: a second run

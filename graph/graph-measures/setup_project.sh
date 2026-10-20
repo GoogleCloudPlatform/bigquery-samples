@@ -161,9 +161,9 @@ fi
 tick "billing account: $ACCOUNT_DISPLAY ($ACCOUNT_ID)"
 
 # ── 3 · create the project ────────────────────────────────────────────────────
-# bq-graph-XXXX. Project IDs are unique across all of Google Cloud and a
-# deleted ID stays reserved, so a collision is a normal outcome, not an error:
-# retry with a new number before giving up.
+# bq-graph-xxxxxx, six random hex digits (16.7M IDs). Project IDs are unique
+# across all of Google Cloud and a deleted ID stays reserved, so a collision is
+# a normal outcome, not an error: retry with a new suffix before giving up.
 say "2 · Project"
 
 if [ -n "$ADOPT_PROJECT" ]; then
@@ -173,7 +173,7 @@ else
     PROJECT_ID=""
     CREATE_ERR=""
     for _ in $(seq 1 "$CREATE_ATTEMPTS"); do
-        CANDIDATE="${PREFIX}$(printf '%04d' $((RANDOM % 10000)))"
+        CANDIDATE="${PREFIX}$(od -An -N3 -tx1 /dev/urandom | tr -d ' \n')"
         info "creating $CANDIDATE"
         if CREATE_ERR="$(gcloud projects create "$CANDIDATE" \
                 --name="BigQuery Graph Measures" 2>&1)"; then

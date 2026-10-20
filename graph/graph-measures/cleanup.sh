@@ -17,5 +17,11 @@
 # The data agent from the optional chat step is deleted in the console (Agents → Agent catalog).
 set -euo pipefail
 PROJECT="${GOOGLE_CLOUD_PROJECT:-$(gcloud config get-value project 2>/dev/null || true)}"
-DATASET="${DATASET:-music}"
+PROJECT="$(printf '%s' "$PROJECT" | tr -d '[:space:]')"
+if [ -z "$PROJECT" ] || [ "$PROJECT" = "(unset)" ]; then
+  printf '\n\033[1m✗ No Google Cloud project selected.\033[0m\n' >&2
+  printf 'Point gcloud at the project the lab used, then re-run:\n  gcloud config set project YOUR_PROJECT_ID\n' >&2
+  exit 1
+fi
+DATASET="music"
 bq --project_id="$PROJECT" rm -r -f -d "$PROJECT:$DATASET" && printf '  ✓ dropped %s.%s (tables and graph)\n' "$PROJECT" "$DATASET"
