@@ -3,7 +3,7 @@
 ## Overview
 This sample demonstrates how to use BigQuery's Object Tables and AI Functions to analyze unstructured data (images and PDFs) alongside tabular data, all without moving your data out of BigQuery. Then it uses Google's foundational TimesFM model for zero-shot time-series forecasting to predict future sales volume.
 
-If you prefer going through this as a step-by-step tutorial, check out the [codelab](https://codelabs.developers.google.com/multimodal-analytics-zero-shot-forecasting).
+If you prefer going through this as a step-by-step tutorial, check out the [codelab](https://codelabs.developers.google.com/multimodal-analytics-zero-shot-forecasting?utm_campaign=CDR_0x619bfc4f_user-journey_b568309984&utm_medium=external&utm_source=other).
 
 ### The Scenario: Best Foot Forward (BFF)
 Imagine you are a Data Engineer at a fictional shoe company called Best Foot Forward (BFF). The company works with many different types of data:
@@ -27,7 +27,7 @@ To run this notebook, you will need:
     *   `aiplatform.googleapis.com`
     *   `storage.googleapis.com`
     *   `bigqueryconnection.googleapis.com`
-* The `gcloud` CLI installed. You can follow the installation instructions [here](https://docs.cloud.google.com/sdk/docs/install-sdk).
+* The `gcloud` CLI installed. You can follow the installation instructions [here](https://docs.cloud.google.com/sdk/docs/install-sdk?utm_campaign=CDR_0x619bfc4f_user-journey_b568309984&utm_medium=external&utm_source=other).
 
 ## Setup
 
@@ -52,7 +52,7 @@ bq mk --location=$GOOGLE_CLOUD_LOCATION bff
 
 ### Create the Cloud Resource Connection
 
-In order to create the Object Tables used in this sample, you first need to create a [Cloud Resource Connection](https://docs.cloud.google.com/bigquery/docs/create-cloud-resource-connection) and give it the relevant IAM permissions.
+In order to create the Object Tables used in this sample, you first need to create a [Cloud Resource Connection](https://docs.cloud.google.com/bigquery/docs/create-cloud-resource-connection?utm_campaign=CDR_0x619bfc4f_user-journey_b568309984&utm_medium=external&utm_source=other) and give it the relevant IAM permissions.
 
 ```bash
 # Create the Cloud Resource Connection
