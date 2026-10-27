@@ -72,6 +72,6 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
     --role="roles/aiplatform.user"
 ```
 
-Now you're ready to execute the SQL queries! The SQL files are numbered so you can go through them in order.
+Now you're ready to execute the SQL queries! The SQL files are numbered so you can go through them in order. You can paste these queries directly into [BigQuery Studio](https://console.cloud.google.com/bigquery?utm_campaign=CDR_0x619bfc4f_user-journey_b568309984&utm_medium=external&utm_source=other) or execute them sequentially with the [bq CLI](https://docs.cloud.google.com/bigquery/docs/reference/bq-cli-reference?utm_campaign=CDR_0x619bfc4f_user-journey_b568309984&utm_medium=external&utm_source=other).
 
 
