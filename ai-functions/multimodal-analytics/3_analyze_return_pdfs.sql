@@ -18,14 +18,17 @@ OPTIONS (
 ) AS
 SELECT
   REGEXP_EXTRACT(uri, r'(RET-\d+)') AS return_id,
-  JSON_VALUE(ml_generate_text_llm_result, '$.sentiment') AS customer_sentiment,
-  JSON_VALUE(ml_generate_text_llm_result, '$.reason') AS extracted_reason
-FROM ML.GENERATE_TEXT(
+  sentiment AS customer_sentiment,
+  reason AS extracted_reason
+FROM AI.GENERATE_TABLE(
   MODEL `bff.gemini_flash`,
-  TABLE `bff.return_pdfs`,
+  (
+    SELECT
+      uri,
+      (uri, 'Read this return authorization slip and extract the sentiment (POSITIVE, NEUTRAL, or NEGATIVE) and the reason (a short 2-3 word phrase describing the return reason, like "Wrong Size" or "Defective").') AS prompt
+    FROM `bff.return_pdfs`
+  ),
   STRUCT(
-    'Read this return authorization slip. Return a valid JSON object with exactly two keys: "sentiment" (value must be POSITIVE, NEUTRAL, or NEGATIVE) and "reason" (a short 2-3 word phrase describing the return reason, like "Wrong Size" or "Defective"). Do not include any markdown formatting.' AS prompt,
-    TRUE AS flatten_json_output,
-    0.0 AS temperature
+    'sentiment STRING, reason STRING' AS output_schema
   )
 );

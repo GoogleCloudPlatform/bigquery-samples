@@ -18,12 +18,9 @@ OPTIONS (
 ) AS
 SELECT
   REGEXP_EXTRACT(uri, r'(RET-\d+)') AS return_id,
-  ml_generate_text_llm_result AS defect_category
-FROM ML.GENERATE_TEXT(
-  MODEL `bff.gemini_flash`,
-  TABLE `bff.return_images`,
-  STRUCT(
-    'You are a QA inspector for Best Foot Forward. Look at this image of a returned sneaker. What is the primary visible defect? Choose exactly one from this list: [Sole Separation, Scuffed/Dirty, No Defect]. Respond with just the category name.' AS prompt,
-    TRUE AS flatten_json_output
-  )
-);
+  AI.GENERATE(
+    (uri, 'You are a QA inspector for Best Foot Forward. Look at this image of a returned sneaker. What is the primary visible defect? Choose exactly one from this list: [Sole Separation, Scuffed/Dirty, No Defect]. Respond with just the category name.'),
+    endpoint => 'gemini-3.8-flash',
+    connection_id => 'us.bff'
+  ).result AS defect_category
+FROM `bff.return_images`;
