@@ -11,11 +11,11 @@ Imagine you are a Data Engineer at a fictional shoe company called Best Foot For
 *   **PDFs** containing return authorization slips.
 *   **Tabular data** containing transaction histories.
 
-In this sample, you will create object tables from a public dataset in GCS, and then use BigQuery's `AI.GENERATE` and `AI.GENERATE_TABLE` AI functions to analyze the shoe return images and the reason for the return from the PDFs. You will then join these insights with tabular transaction data to make decisions about which products to keep in your inventory, and use `AI.FORECAST` to predict future inventory needs based on the cleaned data. The sample includes setup commands in the Setup section below, followed by a series of SQL queries.
+In this sample, you will create object tables from a public dataset in GCS, and then use BigQuery's `AI.GENERATE` AI function to analyze the shoe return images and the reason for the return from the PDFs. You will then join these insights with tabular transaction data to make decisions about which products to keep in your inventory, and use `AI.FORECAST` to predict future inventory needs based on the cleaned data. The sample includes setup commands in the Setup section below, followed by a series of SQL queries.
 
 ## What You'll Learn
 1.  **BigQuery Object Tables:** Create secure references to images and PDFs stored in Cloud Storage.
-2.  **BigQuery AI Functions:** Use `AI.GENERATE` and `AI.GENERATE_TABLE` to extract insights from images and PDFs stored in object tables
+2.  **BigQuery AI Functions:** Use `AI.GENERATE` to extract insights from images and PDFs stored in object tables
 3.  **Zero-Shot Forecasting:** Use `AI.FORECAST` (TimesFM) to predict the next 30 days of sales volume.
 
 ## Prerequisites
@@ -41,6 +41,7 @@ gcloud services enable \
     bigquery.googleapis.com \
     storage.googleapis.com \
     bigqueryconnection.googleapis.com
+```
 
 ### Create the BigQuery dataset
 

@@ -18,17 +18,16 @@ OPTIONS (
 ) AS
 SELECT
   REGEXP_EXTRACT(uri, r'(RET-\d+)') AS return_id,
-  sentiment AS customer_sentiment,
-  reason AS extracted_reason
-FROM AI.GENERATE_TABLE(
-  MODEL `bff.gemini_flash`,
-  (
-    SELECT
-      uri,
-      (uri, 'Read this return authorization slip and extract the sentiment (POSITIVE, NEUTRAL, or NEGATIVE) and the reason (a short 2-3 word phrase describing the return reason, like "Wrong Size" or "Defective").') AS prompt
-    FROM `bff.return_pdfs`
-  ),
-  STRUCT(
-    'sentiment STRING, reason STRING' AS output_schema
-  )
-);
+  pdf_data.sentiment AS customer_sentiment,
+  pdf_data.reason AS extracted_reason
+FROM (
+  SELECT
+    uri,
+    AI.GENERATE(
+      ('Read this return authorization slip and extract the sentiment (POSITIVE, NEUTRAL, or NEGATIVE) and the reason (a short 2-3 word phrase describing the return reason, like "Wrong Size" or "Defective").', ref),
+      endpoint => 'gemini-3.8-flash',
+      connection_id => 'us.bff',
+      output_schema => 'sentiment STRING, reason STRING'
+    ).*
+  FROM `bff.return_pdfs`
+) AS pdf_data;
