@@ -1,0 +1,10 @@
+# Dependencies are managed dynamically via uv (see pyproject.toml) without
+# hardcoded version pins so resolution adapts as Cloud Shell / Python versions evolve.
+# Note: google-cloud-documentai is no longer required because BigQuery's
+# AI.CHUNK_DOCUMENT automatically provisions and manages the layout parser.
+db-dtypes
+google-cloud-bigquery
+google-cloud-spanner
+google-cloud-storage
+ipykernel
+pandas
