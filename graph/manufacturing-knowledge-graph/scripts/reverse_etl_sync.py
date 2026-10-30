@@ -102,8 +102,8 @@ def sync_insights(
         (
             r.insight_id,
             r.customer_id,
-            r.affected_products_count,
-            float(r.total_spend_at_risk),
+            r.affected_products_count if r.affected_products_count is not None else 0,
+            float(r.total_spend_at_risk) if r.total_spend_at_risk is not None else 0.0,
             r.highest_risk_level,
             r.support_recommendation,
             r.last_sync_time,
