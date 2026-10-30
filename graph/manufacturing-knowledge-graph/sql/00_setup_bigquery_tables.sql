@@ -44,7 +44,7 @@ SELECT
   uri,
   AI.EMBED(content => content, endpoint => 'gemini-embedding-2').result AS embedding
 FROM AI.CHUNK_DOCUMENT(
-  'gs://bq-dea-kg-demo-manuals/manuals/*.pdf',
+  'gs://<YOUR_PROJECT_ID>-kg-demo-manuals/manuals/*.pdf',
   chunk_size => 500
 )
 WHERE status = '' AND TRIM(content) != '';
