@@ -73,7 +73,7 @@ bq mk --reservation_assignment \
 
 ### 3. Chunk Manuals, Embed Content & Build Base Graph Tables (`BigQuery Studio`)
 1. Open [`sql/00_setup_bigquery_tables.sql`](./sql/00_setup_bigquery_tables.sql) in **BigQuery Studio**.
-2. Replace `'gs://bq-dea-kg-demo-manuals/manuals/*.pdf'` with your project's staged bucket URI (`'gs://<YOUR_PROJECT_ID>-kg-demo-manuals/manuals/*.pdf'`).
+2. Replace `<YOUR_PROJECT_ID>` in `'gs://<YOUR_PROJECT_ID>-kg-demo-manuals/manuals/*.pdf'` with your Google Cloud project ID.
 3. Run the script to:
    - Semantically chunk all four PDF manuals with `AI.CHUNK_DOCUMENT` and generate `gemini-embedding-2` vectors via `AI.EMBED` (`kg_demo.document_chunks`).
    - Extract structured `(Product)-[:CONTAINS_PART]->(Part)-[:MADE_OF]->(Material)` triples with `AI.GENERATE` (`gemini-3.8-flash`) into `kg_demo.extracted_knowledge_graph`.

@@ -16,12 +16,16 @@
 """Syncs BigQuery AI Product Advisories and Customer Risk Insights into Cloud Spanner."""
 
 import argparse
+import os
 import subprocess
 from google.cloud import bigquery
 from google.cloud import spanner
 
 
 def get_default_project() -> str:
+    env_proj = os.environ.get("PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
+    if env_proj:
+        return env_proj
     try:
         out = subprocess.run(
             ["gcloud", "config", "get-value", "project"],
@@ -30,9 +34,9 @@ def get_default_project() -> str:
             timeout=5,
             check=False,
         ).stdout.strip()
-        return out or "bq-dea"
+        return "" if out == "(unset)" else out
     except Exception:
-        return "bq-dea"
+        return ""
 
 
 def sync_insights(
@@ -136,6 +140,8 @@ def main() -> None:
     parser.add_argument("--instance", default="kg-demo-instance", help="Spanner Instance ID")
     parser.add_argument("--database", default="manufacturing-db", help="Spanner Database ID")
     args = parser.parse_args()
+    if not args.project:
+        parser.error("Specify --project or set PROJECT_ID / gcloud config set project YOUR_PROJECT_ID.")
 
     sync_insights(args.project, args.dataset, args.instance, args.database)
 
