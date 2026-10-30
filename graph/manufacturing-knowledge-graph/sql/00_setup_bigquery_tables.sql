@@ -33,7 +33,7 @@ UNION ALL SELECT "FrostGuard Commercial 2000", "PROD_FGC2000", "Industrial Cold 
 -- ------------------------------------------------------------------------------
 -- Requires `documentai.googleapis.com` enabled on the project. BigQuery automatically
 -- provisions and reuses the `bq-created-layout-parser` Document AI processor.
--- Replace <YOUR_PROJECT_ID> below with your Google Cloud project ID (matching the bucket created by scripts/setup_demo.sh).
+-- Cloud Storage URI for the staged manuals (populated automatically by scripts/setup_demo.sh):
 CREATE OR REPLACE TABLE `kg_demo.document_chunks` AS
 SELECT
   chunk_id,

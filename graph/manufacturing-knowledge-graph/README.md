@@ -16,10 +16,9 @@ End-to-end demo showing how unstructured PDF engineering manuals in Cloud Storag
 
 ## Quickstart in Cloud Shell
 
-1. Run the setup script (uses [`uv`](https://docs.astral.sh/uv/) to create an isolated `.venv` and resolve compatible packages dynamically without hardcoded version pins, enables `documentai.googleapis.com` and BigQuery/Vertex AI APIs, and stages the PDF manuals to GCS):
+1. Run the setup script—it prompts for your Google Cloud Project ID (or accepts `--project <PROJECT_ID>`), automatically replaces `<YOUR_PROJECT_ID>` placeholders across [`sql/`](./sql/) and [`notebooks/`](./notebooks/), sets up an isolated Python environment via [`uv`](https://docs.astral.sh/uv/), enables `documentai.googleapis.com` and BigQuery/Vertex AI/Spanner APIs, and stages the PDF manuals to Cloud Storage:
 
    ```bash
-   export PROJECT_ID=$(gcloud config get-value project)
    chmod +x scripts/setup_demo.sh
    ./scripts/setup_demo.sh
    ```
@@ -53,8 +52,10 @@ Open **Spanner Studio** for `manufacturing-db` and run [`sql/00_setup_spanner_sc
 Use the [Cloud Console](https://docs.cloud.google.com/bigquery/docs/reservations-get-started?utm_campaign=CDR_0x6cb6c9c7_default_b542779815&utm_medium=external&utm_source=social) or the following command to setup an Enterprise reservation requried to run Graph operations in BigQuery:
 
 ```bash
+export PROJECT_ID=$(gcloud config get-value project)
+
 bq mk --reservation \
-  --project_id=<<your_project_id>> \
+  --project_id="${PROJECT_ID}" \
   --location=US \
   --edition=ENTERPRISE \
   --slots=0 \
@@ -63,24 +64,23 @@ bq mk --reservation \
   kg-demo-reservation
 
 bq mk --reservation_assignment \
-  --project_id=<<your_project_id>> \
+  --project_id="${PROJECT_ID}" \
   --location=US \
   --reservation_id=kg-demo-reservation \
   --job_type=QUERY \
   --assignee_type=PROJECT \
-  --assignee_id=<<your_project_id>>
+  --assignee_id="${PROJECT_ID}"
 ```
 
 ### 3. Chunk Manuals, Embed Content & Build Base Graph Tables (`BigQuery Studio`)
-1. Open [`sql/00_setup_bigquery_tables.sql`](./sql/00_setup_bigquery_tables.sql) in **BigQuery Studio**.
-2. Replace `<YOUR_PROJECT_ID>` in `'gs://<YOUR_PROJECT_ID>-kg-demo-manuals/manuals/*.pdf'` with your Google Cloud project ID.
-3. Run the script to:
+1. Open [`sql/00_setup_bigquery_tables.sql`](./sql/00_setup_bigquery_tables.sql) in **BigQuery Studio** (`./scripts/setup_demo.sh` automatically populates `'gs://<YOUR_PROJECT_ID>-kg-demo-manuals/manuals/*.pdf'` with your project ID; replace `<YOUR_PROJECT_ID>` manually if you skipped the setup script).
+2. Run the script to:
    - Semantically chunk all four PDF manuals with `AI.CHUNK_DOCUMENT` and generate `gemini-embedding-2` vectors via `AI.EMBED` (`kg_demo.document_chunks`).
    - Extract structured `(Product)-[:CONTAINS_PART]->(Part)-[:MADE_OF]->(Material)` triples with `AI.GENERATE` (`gemini-3.8-flash`) into `kg_demo.extracted_knowledge_graph`.
    - Create the graph node/edge views and materialize `kg_demo.part_node_embeddings` for vector search.
 
 ### 4. (Optional) Interactive Single-Manual Walkthrough (`Notebook`)
-Upload or open [`notebooks/kg_demo_manufacturing.ipynb`](./notebooks/kg_demo_manufacturing.ipynb) in **BigQuery Studio (Colab Enterprise)** or **Cloud Shell Editor** and run all cells. It automatically detects your active `gcloud` project and walks step-by-step through chunking `manual_frozone_zenith_5000.pdf` (`chunk_size => 250`), extracting BOM triples, and merging them into `kg_demo.extracted_knowledge_graph`.
+Upload or open [`notebooks/kg_demo_manufacturing.ipynb`](./notebooks/kg_demo_manufacturing.ipynb) in **BigQuery Studio (Colab Enterprise)** or **Cloud Shell Editor** and run all cells. It uses the project configured by `./scripts/setup_demo.sh` (or detects your active `gcloud` / ADC project) and walks step-by-step through chunking `manual_frozone_zenith_5000.pdf` (`chunk_size => 250`), extracting BOM triples, and merging them into `kg_demo.extracted_knowledge_graph`.
 
 ### 5. Query the Live Transactional Graph (`Spanner Studio`)
 Open [`sql/01_spanner_transactional_graph.sql`](./sql/01_spanner_transactional_graph.sql) in **Spanner Studio** (`manufacturing-db`) and run the GQL queries against `TransactionalGraph` to inspect customer orders, regional adoption, and spend by tier.
@@ -104,7 +104,7 @@ Choose either option depending on your BigQuery edition:
     --instance="kg-demo-instance" \
     --database="manufacturing-db"
   ```
-- **BigQuery Enterprise / Enterprise Plus (Native SQL Reverse ETL)**: Update the Spanner database URI in [`sql/03_bq_native_reverse_etl_export.sql`](./sql/03_bq_native_reverse_etl_export.sql) (`projects/<YOUR_PROJECT_ID>/instances/kg-demo-instance/databases/manufacturing-db`) and run the `EXPORT DATA ... OPTIONS (format = 'CLOUD_SPANNER')` statements in **BigQuery Studio**.
+- **BigQuery Enterprise / Enterprise Plus (Native SQL Reverse ETL)**: Open [`sql/03_bq_native_reverse_etl_export.sql`](./sql/03_bq_native_reverse_etl_export.sql) (`projects/<YOUR_PROJECT_ID>/...` is populated automatically by `./scripts/setup_demo.sh`) and run the `EXPORT DATA ... OPTIONS (format = 'CLOUD_SPANNER')` statements in **BigQuery Studio**.
 
 ### 9. Query the Enriched Operational Graph (`Spanner Studio`)
 Run [`sql/04_spanner_operational_insights_graph.sql`](./sql/04_spanner_operational_insights_graph.sql) in **Spanner Studio** (`manufacturing-db`) to query `OperationalInsightsGraph`, joining live customer transactions with the AI safety advisories and VIP outreach plans synced from BigQuery.
