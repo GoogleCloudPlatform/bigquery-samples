@@ -34,11 +34,11 @@ Rather than materializing every raw clickstream event as a separate graph node (
 
 ```mermaid
 graph LR
-    subgraph User Entity & Native Timeseries
+    subgraph "User Entity & Native Timeseries"
         U["User Node (users)<br/>Static: total_events, sessions, device, country, recency_decay_weight<br/>Anchor: last_event_timestamp (is_creation_time=True)<br/>Timeseries (group='events'):<br/>• event_timestamps [t₁, t₂, ..., tₖ]<br/>• event_type_ids [page_view, view_item, add_to_cart, ...]<br/>• event_log_time_deltas [ln(1+Δt₁), ...]<br/>• event_recency_weights [w(t₁), ...]"]
     end
 
-    subgraph Shared Pages
+    subgraph "Shared Pages"
         P1["Page: /Apparel/Mens<br/>(total_views, unique_visitors,<br/>first_seen_timestamp)"]
         P2["Page: /basket.html<br/>(total_views, unique_visitors,<br/>first_seen_timestamp)"]
     end
