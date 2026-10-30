@@ -47,7 +47,7 @@ EXPORT DATA
 -- 2. Export Customer Risk Insights natively to Cloud Spanner
 EXPORT DATA
   OPTIONS (
-    uri = 'https://spanner.googleapis.com/projects/bq-dea/instances/kg-demo-instance/databases/manufacturing-db',
+    uri = 'https://spanner.googleapis.com/projects/<YOUR_PROJECT_ID>/instances/kg-demo-instance/databases/manufacturing-db',
     format = 'CLOUD_SPANNER',
     spanner_options = """{ "table": "CustomerInsights" }"""
   ) AS
