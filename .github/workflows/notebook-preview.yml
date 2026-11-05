@@ -1,0 +1,45 @@
+name: Notebook Preview Linker
+
+on:
+  pull_request:
+    paths:
+      - '**.ipynb' # Only trigger if a notebook file is modified or added
+
+jobs:
+  comment-nbviewer-links:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # Required to post a comment on the PR
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find modified notebooks
+        id: changed-files
+        uses: tj-actions/changed-files@v42
+        with:
+          files: '**.ipynb'
+
+      - name: Comment on PR with nbviewer links
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Dynamically pull the author's fork name and branch name
+          REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          COMMENT="### 📓 Jupyter Notebook Previews\n\nI detected notebook changes in this PR! Here are the rendered previews for easier reviewing:\n\n"
+          
+          # Loop through every notebook modified in this PR
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            # Construct the nbviewer URL pointing to the contributor's fork/branch
+            NBVIEWER_URL="https://nbviewer.org/github/$REPO/blob/$BRANCH/$file"
+            COMMENT="$COMMENT- [Preview \`$file\`]($NBVIEWER_URL)\n"
+          done
+          
+          # Post the comment using the GitHub CLI
+          gh pr comment $PR_URL -b "$COMMENT"
