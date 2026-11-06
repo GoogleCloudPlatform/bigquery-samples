@@ -2,6 +2,9 @@
 
 End-to-end demo showing how unstructured PDF engineering manuals in Cloud Storage are semantically chunked with BigQuery's [`AI.CHUNK_DOCUMENT`](https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-chunk-document?utm_campaign=CDR_0x6cb6c9c7_default_b542779815&utm_medium=external&utm_source=social), transformed into structured Knowledge Graph triples with `AI.GENERATE` (`gemini-3.8-flash`), queried via BigQuery Property Graphs (`GRAPH_TABLE` / GQL), and synced back to Cloud Spanner operational graphs via Reverse ETL.
 
+> [!TIP]
+> **Run on Cloud Shell with the Data Agent Kit**: [`notebooks/kg_demo_manufacturing.ipynb`](./notebooks/kg_demo_manufacturing.ipynb) runs directly on **Google Cloud Shell** alongside the **[Data Agent Kit](https://cloud.google.com/products/data-agent-kit?utm_campaign=CDR_0x6cb6c9c7_default_b542779815&utm_medium=external&utm_source=social)** ([documentation](https://docs.cloud.google.com/data-agent-kit?utm_campaign=CDR_0x6cb6c9c7_default_b542779815&utm_medium=external&utm_source=social) | [GitHub plugin](https://github.com/GoogleCloudPlatform/data-agent-kit-plugin)), connecting your coding agent to BigQuery, Cloud Storage, Spanner, and 15+ Google Data Cloud services to explore this graph and generate production pipelines.
+
 ## Directory Structure
 
 ```text
@@ -9,10 +12,19 @@ End-to-end demo showing how unstructured PDF engineering manuals in Cloud Storag
 ├── README.md
 ├── SAMPLEOWNERS
 ├── manuals/      # Sample unstructured PDF engineering manuals
-├── notebooks/    # Interactive Colab Enterprise / Cloud Shell walkthrough notebook
+├── notebooks/    # Interactive Cloud Shell (with Data Agent Kit) / Colab Enterprise notebook
 ├── scripts/      # Cloud Shell setup script, Reverse ETL Python sync, and uv config
 └── sql/          # Ordered BigQuery Graph & Spanner Graph DDL and GQL query scripts
 ```
+
+## Prerequisites & Required IAM Permissions
+
+Before running the setup script or notebook, ensure you are authenticated with the Google Cloud CLI (`gcloud auth login` and `gcloud auth application-default login`) and that your account has the following IAM roles on your target project:
+- **BigQuery**: BigQuery Data Editor (`roles/bigquery.dataEditor`), BigQuery Job User (`roles/bigquery.jobUser`), and BigQuery Connection Admin (`roles/bigquery.connectionAdmin`) — or BigQuery Admin (`roles/bigquery.admin`).
+- **Cloud Storage**: Storage Admin (`roles/storage.admin`) or Storage Object Admin (`roles/storage.objectAdmin`) to stage the PDF manuals.
+- **Vertex AI / Agent Platform**: Vertex AI User (`roles/aiplatform.user`) to invoke Gemini (`gemini-3.8-flash` and `gemini-embedding-2`).
+- **Document AI**: Document AI Editor (`roles/documentai.editor`) so `AI.CHUNK_DOCUMENT` can provision and invoke the managed `bq-created-layout-parser` processor.
+- **Cloud Spanner & Service Usage**: Spanner Database Admin (`roles/spanner.databaseAdmin`) for the operational graph steps and Service Usage Admin (`roles/serviceusage.serviceUsageAdmin`) to enable required APIs.
 
 ## Quickstart in Cloud Shell
 
@@ -23,7 +35,7 @@ End-to-end demo showing how unstructured PDF engineering manuals in Cloud Storag
    ./scripts/setup_demo.sh
    ```
 
-2. Run [`notebooks/kg_demo_manufacturing.ipynb`](./notebooks/kg_demo_manufacturing.ipynb) in **BigQuery Studio (Colab Enterprise)** or **Cloud Shell Editor**:
+2. Run [`notebooks/kg_demo_manufacturing.ipynb`](./notebooks/kg_demo_manufacturing.ipynb) on **Cloud Shell** with the **[Data Agent Kit](https://cloud.google.com/products/data-agent-kit?utm_campaign=CDR_0x6cb6c9c7_default_b542779815&utm_medium=external&utm_source=social)** (or in **BigQuery Studio / Colab Enterprise**):
    - **No `google-cloud-documentai` client package needed**: `AI.CHUNK_DOCUMENT` automatically creates and reuses the `bq-created-layout-parser` Document AI Layout Parser processor in your project.
    - **Dynamic resolution via `uv` (no pinned versions)**: In Cloud Shell, `./scripts/setup_demo.sh` registers the isolated `Python (KG Demo - uv)` Jupyter kernel so Cloud Shell's pre-installed system packages never conflict as Cloud Shell images evolve. In Colab Enterprise (or any other kernel), Cell 2 reuses pre-installed client libraries directly or resolves missing packages cleanly via `uv` without version pins.
 
@@ -79,8 +91,8 @@ bq mk --reservation_assignment \
    - Extract structured `(Product)-[:CONTAINS_PART]->(Part)-[:MADE_OF]->(Material)` triples with `AI.GENERATE` (`gemini-3.8-flash`) into `kg_demo.extracted_knowledge_graph`.
    - Create the graph node/edge views and materialize `kg_demo.part_node_embeddings` for vector search.
 
-### 4. (Optional) Interactive Single-Manual Walkthrough (`Notebook`)
-Upload or open [`notebooks/kg_demo_manufacturing.ipynb`](./notebooks/kg_demo_manufacturing.ipynb) in **BigQuery Studio (Colab Enterprise)** or **Cloud Shell Editor** and run all cells. It uses the project configured by `./scripts/setup_demo.sh` (or detects your active `gcloud` / ADC project) and walks step-by-step through chunking `manual_frozone_zenith_5000.pdf` (`chunk_size => 250`), extracting BOM triples, and merging them into `kg_demo.extracted_knowledge_graph`.
+### 4. (Optional) Interactive Single-Manual Walkthrough (`Cloud Shell + Data Agent Kit` / `Notebook`)
+Open [`notebooks/kg_demo_manufacturing.ipynb`](./notebooks/kg_demo_manufacturing.ipynb) on **Cloud Shell** with the **[Data Agent Kit](https://cloud.google.com/products/data-agent-kit?utm_campaign=CDR_0x6cb6c9c7_default_b542779815&utm_medium=external&utm_source=social)** (or upload it to **BigQuery Studio / Colab Enterprise**) and run all cells. It uses the project configured by `./scripts/setup_demo.sh` (or detects your active `gcloud` / ADC project), automatically provisions a BigQuery Cloud Resource connection (`kg-demo-connection`) if needed, and walks step-by-step through chunking `manual_frozone_zenith_5000.pdf` (`chunk_size => 250`), extracting BOM triples, and merging them into `kg_demo.extracted_knowledge_graph`.
 
 ### 5. Query the Live Transactional Graph (`Spanner Studio`)
 Open [`sql/01_spanner_transactional_graph.sql`](./sql/01_spanner_transactional_graph.sql) in **Spanner Studio** (`manufacturing-db`) and run the GQL queries against `TransactionalGraph` to inspect customer orders, regional adoption, and spend by tier.
