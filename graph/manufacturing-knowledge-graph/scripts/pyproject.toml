@@ -1,0 +1,16 @@
+[project]
+name = "bq-spanner-kg-demo"
+version = "0.1.0"
+description = "Manufacturing Knowledge Graph Demo with BigQuery AI.CHUNK_DOCUMENT and Spanner Graph"
+requires-python = ">=3.10"
+dependencies = [
+    "db-dtypes",
+    "google-cloud-bigquery",
+    "google-cloud-spanner",
+    "google-cloud-storage",
+    "ipykernel",
+    "pandas",
+]
+
+[tool.uv]
+package = false

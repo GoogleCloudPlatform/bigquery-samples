@@ -1,0 +1,133 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3220 >>
+stream
+0.08 0.22 0.48 rg
+0 730 612 62 re f
+1 1 1 rg
+BT /F2 18 Tf 35 765 Td (FROZONE ZENITH 5000 - ENGINEERING & TECHNICAL MANUAL) Tj ET
+BT /F1 11 Tf 35 745 Td (Document ID: FZ5K-MAN-2026 | Revision 4.2 | Classification: Enterprise Commercial HVAC) Tj ET
+0 0 0 rg
+BT /F2 14 Tf 35 700 Td (1. SYSTEM ARCHITECTURE & REFRIGERATION CIRCUIT SCHEMATIC) Tj ET
+0.2 0.2 0.2 rg
+BT /F1 10 Tf 35 680 Td (The FroZone Zenith 5000 is an industrial-grade commercial HVAC refrigeration unit designed for high-tonnage thermal) Tj ET
+BT /F1 10 Tf 35 667 Td (control. The architecture integrates a hermetic compressor, dual condenser coils, and thermal insulation panels.) Tj ET
+0.94 0.95 0.97 rg 35 500 542 145 re f
+0.70 0.70 0.70 RG 1 w 35 500 542 145 re S
+0.10 0.10 0.10 rg
+BT /F2 11 Tf 45 628 Td (FIG 1.0: FROZONE ZENITH 5000 REFRIGERATION CIRCUIT & STRUCTURAL ASSEMBLIES) Tj ET
+0.98 0.90 0.90 rg 60 535 135 65 re f
+0.85 0.15 0.15 RG 2 w 60 535 135 65 re S
+0.85 0.15 0.15 rg BT /F2 10 Tf 70 585 Td ([PART: COMP-809]) Tj ET
+0 0 0 rg BT /F1 9 Tf 70 570 Td (Hermetic Compressor) Tj ET
+0.85 0.15 0.15 rg BT /F2 8 Tf 70 555 Td (HAZARD: Freon-12 / Fiberglass) Tj ET
+0.88 0.93 0.98 rg 240 535 135 65 re f
+0.15 0.40 0.85 RG 2 w 240 535 135 65 re S
+0.15 0.40 0.85 rg BT /F2 10 Tf 250 585 Td ([PART: COIL-101]) Tj ET
+0 0 0 rg BT /F1 9 Tf 250 570 Td (Condenser Coil Assembly) Tj ET
+0.15 0.40 0.85 rg BT /F2 8 Tf 250 555 Td (MATERIAL: Copper Alloy C101) Tj ET
+0.98 0.94 0.88 rg 420 535 135 65 re f
+0.85 0.50 0.15 RG 2 w 420 535 135 65 re S
+0.85 0.50 0.15 rg BT /F2 10 Tf 430 585 Td ([SUB-ASSEMBLY]) Tj ET
+0 0 0 rg BT /F1 9 Tf 430 570 Td (Thermal Insulation Panel) Tj ET
+0.85 0.50 0.15 rg BT /F2 8 Tf 430 555 Td (MATERIAL: Fiberglass Core) Tj ET
+0.30 0.30 0.30 RG 2 w 195 567 m 240 567 l S
+0.30 0.30 0.30 rg BT /F2 10 Tf 205 572 Td (===>) Tj ET
+0.30 0.30 0.30 RG 2 w 375 567 m 420 567 l S
+0.30 0.30 0.30 rg BT /F2 10 Tf 385 572 Td (===>) Tj ET
+0 0 0 rg
+BT /F2 14 Tf 35 465 Td (2. SETUP & INSTALLATION INSTRUCTIONS) Tj ET
+0.2 0.2 0.2 rg
+BT /F2 10 Tf 45 440 Td (Step 1 - Mechanical Positioning:) Tj ET
+BT /F1 10 Tf 205 440 Td (Mount unit on level vibration-damped pad. Ensure minimum 500mm rear airflow clearance.) Tj ET
+BT /F2 10 Tf 45 420 Td (Step 2 - Refrigerant Piping:) Tj ET
+BT /F1 10 Tf 205 420 Td (Connect high-pressure discharge piping to COIL-101 inlet manifold. Torque fittings to 45 Nm.) Tj ET
+BT /F2 10 Tf 45 400 Td (Step 3 - Electrical Wiring:) Tj ET
+BT /F1 10 Tf 205 400 Td (Wire 3-phase 480V AC power to the compressor main terminal block. Inspect earth grounding interlock.) Tj ET
+BT /F2 10 Tf 45 380 Td (Step 4 - Vacuum Commissioning:) Tj ET
+BT /F1 10 Tf 205 380 Td (Evacuate circuit to 500 microns. VERIFY compressor seal integrity before initial refrigerant charge.) Tj ET
+0.98 0.90 0.90 rg 35 305 542 50 re f
+0.85 0.15 0.15 RG 1 w 35 305 542 50 re S
+0.85 0.15 0.15 rg BT /F2 10 Tf 45 338 Td (CRITICAL SETUP ADVISORY: COMPRESSOR SEAL INSPECTION REQUIRED) Tj ET
+0 0 0 rg BT /F1 9 Tf 45 322 Td (Before initial power-up, check COMP-809 compressor seal rings. Standard fiberglass seals degrade under) Tj ET
+BT /F1 9 Tf 45 310 Td (continuous thermal cycling above +120 C. Refer to Section 4 Troubleshooting Guide for upgrade instructions.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 3216 >>
+stream
+0.08 0.22 0.48 rg
+0 730 612 62 re f
+1 1 1 rg
+BT /F2 18 Tf 35 765 Td (FROZONE ZENITH 5000 - BILL OF MATERIALS & FAILURES) Tj ET
+BT /F1 11 Tf 35 745 Td (Section 3: Component Specifications | Section 4: Troubleshooting Guide & Failure Modes) Tj ET
+0 0 0 rg
+BT /F2 14 Tf 35 700 Td (3. BILL OF MATERIALS (BOM) & COMPONENT MATERIAL SPECIFICATIONS) Tj ET
+0.2 0.2 0.2 rg
+BT /F1 10 Tf 35 680 Td (The following component specifications define the root product assembly and constituent subassemblies:) Tj ET
+0 0 0 rg
+BT /F2 10 Tf 45 658 Td (? Root Assembly:) Tj ET
+BT /F1 10 Tf 145 658 Td (FroZone Zenith 5000 CONTAINS_PART Compressor Unit-XZ.) Tj ET
+BT /F2 10 Tf 45 642 Td (? Compressor Spec:) Tj ET
+BT /F1 10 Tf 145 642 Td (Compressor Unit-XZ is MADE_OF Freon-12 and MADE_OF Copper Alloy C101.) Tj ET
+BT /F2 10 Tf 45 626 Td (? Insulation Spec:) Tj ET
+BT /F1 10 Tf 145 626 Td (FroZone Zenith 5000 CONTAINS_PART Thermal Insulation Panel. Thermal Insulation Panel is MADE_OF Fiberglass.) Tj ET
+BT /F2 10 Tf 45 610 Td (? Nozzle Spec:) Tj ET
+BT /F1 10 Tf 145 610 Td (FroZone Zenith 5000 CONTAINS_PART Dispense Nozzle Assembly. Dispense Nozzle Assembly is MADE_OF Stainless Steel 316.) Tj ET
+0 0 0 rg
+BT /F2 14 Tf 35 570 Td (4. POSSIBLE FAILURES & TROUBLESHOOTING GUIDE (SAFETY ADVISORIES)) Tj ET
+0.98 0.88 0.88 rg 35 465 542 85 re f
+0.85 0.15 0.15 RG 2 w 35 465 542 85 re S
+0.85 0.15 0.15 rg BT /F2 11 Tf 45 533 Td ([CRITICAL FAILURE MODE E-101] COMPRESSOR SEAL DEGRADATION - FIBERGLASS) Tj ET
+0 0 0 rg BT /F1 9 Tf 45 517 Td (Symptoms: Abnormal compressor vibration, oil mist leakage at flange joints, rapid pressure drop during pump-down.) Tj ET
+0.2 0.2 0.2 rg BT /F1 9 Tf 45 501 Td (Root Cause: Fiberglass seal rings in COMP-809 erode under thermal cycling above +120 C discharge temperature.) Tj ET
+0.85 0.15 0.15 rg BT /F2 9 Tf 45 483 Td (MANDATORY ACTION: URGENT ADVISORY. Replace standard fiberglass compressor seals with upgraded PTFE seal kit immediately.) Tj ET
+0.99 0.93 0.85 rg 35 365 542 85 re f
+0.85 0.50 0.15 RG 2 w 35 365 542 85 re S
+0.85 0.50 0.15 rg BT /F2 11 Tf 45 433 Td ([HIGH RISK FAILURE MODE E-204] REFRIGERANT PRESSURE LOSS - FREON-12) Tj ET
+0 0 0 rg BT /F1 9 Tf 45 417 Td (Symptoms: Insufficient cooling capacity, evaporator frosting, continuous compressor operation without cycling.) Tj ET
+0.2 0.2 0.2 rg BT /F1 9 Tf 45 401 Td (Root Cause: Freon-12 (CFC substance) micro-leakage at condenser connection fittings.) Tj ET
+0.85 0.50 0.15 rg BT /F2 9 Tf 45 383 Td (MANDATORY ACTION: Verify environmental regulatory compliance and retrofit unit with approved R-410A refrigerant substitute.) Tj ET
+0.90 0.97 0.90 rg 35 265 542 85 re f
+0.15 0.60 0.20 RG 2 w 35 265 542 85 re S
+0.15 0.60 0.20 rg BT /F2 11 Tf 45 333 Td ([NORMAL MAINTENANCE E-010] CONDENSER COIL FOULING - COPPER COIL-101) Tj ET
+0 0 0 rg BT /F1 9 Tf 45 317 Td (Symptoms: Slight discharge pressure elevation (+5% to +10%), increased condenser fan RPM.) Tj ET
+0.2 0.2 0.2 rg BT /F1 9 Tf 45 301 Td (Root Cause: Atmospheric dust and debris accumulation on Copper Alloy C101 condenser fin surfaces.) Tj ET
+0.15 0.60 0.20 rg BT /F2 9 Tf 45 283 Td (ROUTINE ACTION: Perform scheduled low-pressure detergent wash of copper coil fins every 6 months.) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+8 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000263 00000 n 
+0000003535 00000 n 
+0000003671 00000 n 
+0000006939 00000 n 
+0000007009 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+7084
+%%EOF
