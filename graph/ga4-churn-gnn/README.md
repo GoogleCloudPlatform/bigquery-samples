@@ -71,7 +71,7 @@ graph LR
 | **6. Model Evaluation & Diagnostics** | Held-out test cohort metrics | Evaluating AUC-ROC (**~0.81**), accuracy, precision-recall curves, and confusion matrices on unseen test users. |
 | **7. Churn Risk Scoring & BigQuery Export** | Tier segmentation & activation | Segmenting customers into *Low*, *Medium*, and *High* risk tiers and exporting scored predictions back to BigQuery via `bigframes.pandas.DataFrame.to_gbq()`. |
 | **8. Behavioral Dossiers with ISO GQL** | Explainable graph analytics | Joining GNN risk predictions with `GRAPH_TABLE` + `UNNEST` queries to compare chronological touchpoint sequences of High-Risk vs. Low-Risk cohorts. |
-| **9. Enterprise Best Practices & Cleanup** | Production MLOps | Rolling window schedules, causal temporal sampling, sequence encoder selection (`cnn` vs. `transformer`), CPU vs. GPU sizing, continuous GQL monitoring, and reservation cleanup. |
+| **9. Summary & Enterprise Best Practices** | Production MLOps | Rolling window schedules, causal temporal sampling, sequence encoder selection (`cnn` vs. `transformer`), CPU vs. GPU sizing, and continuous GQL monitoring. |
 
 ---
 
@@ -81,35 +81,8 @@ graph LR
 
 1. **Google Cloud Project** with billing enabled and the following APIs active:
    - BigQuery API (`bigquery.googleapis.com`)
-   - BigQuery Reservation API (`bigqueryreservation.googleapis.com`)
    - Cloud Storage API (`storage.googleapis.com`)
 2. **Cloud Storage Bucket** (used by DGF as a temporary staging `work_dir` when reading the BigQuery Property Graph).
-3. **BigQuery Enterprise or Enterprise Plus Reservation**:
-   > [!IMPORTANT]
-   > **[BigQuery Graph (GQL)](https://docs.cloud.google.com/bigquery/docs/graph-overview?utm_campaign=CDR_0x6cb6c9c7_default_b549221282&utm_medium=external&utm_source=other) requires an Enterprise or Enterprise Plus reservation** and does not run under on-demand pricing. You can create a cost-efficient autoscaling reservation (`--slots=0 --autoscale_max_slots=100`) that costs nothing when idle:
-   ```bash
-   # Enable the BigQuery Reservation API
-   gcloud services enable bigqueryreservation.googleapis.com --project=<PROJECT_ID>
-
-   # Create an Enterprise reservation with 0 baseline slots and 100 max autoscaling slots
-   bq mk --reservation \
-     --project_id=<PROJECT_ID> \
-     --location=US \
-     --edition=ENTERPRISE \
-     --slots=0 \
-     --autoscale_max_slots=100 \
-     --ignore_idle_slots=true \
-     ga4-churn-reservation
-
-   # Assign your project to the reservation for QUERY jobs
-   bq mk --reservation_assignment \
-     --project_id=<PROJECT_ID> \
-     --location=US \
-     --reservation_id=ga4-churn-reservation \
-     --job_type=QUERY \
-     --assignee_type=PROJECT \
-     --assignee_id=<PROJECT_ID>
-   ```
 
 ### Running the Lab
 
