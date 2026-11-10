@@ -21,3 +21,4 @@ Samples in this folder go beyond single-feature snippets to showcase complete ar
 | Sample | Overview |
 | :--- | :--- |
 | **[Real-Time Fraud Defense with BigQuery Graph, Spanner Graph & Reverse ETL](./spanner-fraud-detection/)** | Combines **BigQuery Continuous Queries (Reverse ETL)**, **Spanner Graph**, **Spanner Vector Search**, and **BigQuery Graph (ISO GQL)** with multimodal embeddings to detect, trace, and investigate a coordinated fraud ring across operational and analytical data. <br/><br/> 📄 [Sample README](./spanner-fraud-detection/README.md) · 👤 [SAMPLEOWNERS](./spanner-fraud-detection/SAMPLEOWNERS) |
+| **[Agent Evaluation with the BigQuery Agent Analytics (BQAA) SDK](./bqaa-sdk)** | Demonstrates how to evaluate and understand agent telemetry captured with the BQAA plugin using the **BigQuery Agent Analytics (BQAA) SDK**. <br/><br/> 📄 [Sample README](./bqaa-sdk/README.md) · 👤 [SAMPLEOWNERS](./bqaa-sdk/SAMPLEOWNERS) |
